@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 // 单线程的socket程序
-public class HttpServer01 {
+public class  HttpServer01 {
     public static void main(String[] args) throws IOException{
         ServerSocket serverSocket = new ServerSocket(8801);
         while (true) {

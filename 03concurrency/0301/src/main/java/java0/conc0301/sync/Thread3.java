@@ -27,12 +27,14 @@ public class Thread3 {
     }
 
     private void m4t1(Inner inner) {
+        System.out.println(Thread.currentThread().getName() + inner.getClass());
         synchronized (inner) { //使用对象锁
             inner.m4t1();
         }
     }
 
     private void m4t2(Inner inner) {
+        System.out.println(Thread.currentThread().getName() + inner.getClass());
         inner.m4t2();
     }
 

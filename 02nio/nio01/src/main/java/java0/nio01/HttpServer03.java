@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 // 创建了一个固定大小的线程池处理请求
 public class HttpServer03 {
     public static void main(String[] args) throws IOException{
+        // Runtime.getRuntime().availableProcessors() 获取CPU的核心线程数，存在CPU超核问题？
 
         ExecutorService executorService = Executors.newFixedThreadPool(
                 Runtime.getRuntime().availableProcessors() + 2);

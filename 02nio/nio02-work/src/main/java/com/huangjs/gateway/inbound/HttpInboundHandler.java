@@ -1,8 +1,8 @@
-package io.github.kimmking.gateway.inbound;
+package com.huangjs.gateway.inbound;
 
-import io.github.kimmking.gateway.filter.HeaderHttpRequestFilter;
-import io.github.kimmking.gateway.filter.HttpRequestFilter;
-import io.github.kimmking.gateway.outbound.httpclient4.HttpOutboundHandler;
+import com.huangjs.gateway.filter.HeaderHttpRequestFilter;
+import com.huangjs.gateway.filter.HttpRequestFilter;
+import com.huangjs.gateway.outbound.HttpOutboundHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -12,18 +12,24 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * @Author: HuangFu
+ * @Date: 2021/9/8 8:37
+ * @Description:
+ */
 public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 
     private static Logger logger = LoggerFactory.getLogger(HttpInboundHandler.class);
+    //代理服务地址
     private final List<String> proxyServer;
     private HttpOutboundHandler handler;
     private HttpRequestFilter filter = new HeaderHttpRequestFilter();
-    
+
     public HttpInboundHandler(List<String> proxyServer) {
         this.proxyServer = proxyServer;
         this.handler = new HttpOutboundHandler(this.proxyServer);
     }
-    
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
@@ -40,9 +46,9 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 //                handlerTest(fullRequest, ctx);
 //            }
 
-    
+
             handler.handle(fullRequest, ctx, filter);
-    
+
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
@@ -78,5 +84,6 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 //        cause.printStackTrace();
 //        ctx.close();
 //    }
+
 
 }

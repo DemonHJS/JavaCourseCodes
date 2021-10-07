@@ -14,9 +14,10 @@ public class DaemonThread {
         };
         Thread thread = new Thread(task);
         thread.setName("test-thread-1");
+        //守护线程，当前除主线程外，没有其他活跃线程，自动结束
         thread.setDaemon(true);
         thread.start();
-
+        System.out.println(Thread.activeCount());
         //Thread.sleep(2000);
     }
     

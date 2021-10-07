@@ -1,4 +1,4 @@
-package io.github.kimmking.gateway.inbound;
+package com.huangjs.gateway.inbound;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
